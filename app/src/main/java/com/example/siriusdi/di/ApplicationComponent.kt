@@ -4,6 +4,7 @@ import com.example.siriusdi.data.UserRepository
 import com.example.siriusdi.di.modules.NetworkModule
 import com.example.siriusdi.di.modules.SubcomponentsModule
 import dagger.Component
+import javax.inject.Singleton
 
 /**
  * @author n.d.grebnev
@@ -14,6 +15,7 @@ import dagger.Component
         SubcomponentsModule::class
     ]
 )
+@Singleton
 interface ApplicationComponent {
 
     fun userRepository(): UserRepository
