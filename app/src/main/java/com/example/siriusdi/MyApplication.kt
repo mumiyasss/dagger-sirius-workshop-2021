@@ -1,12 +1,13 @@
 package com.example.siriusdi
 
 import android.app.Application
-import com.example.siriusdi.di.DependencyContainer
+import com.example.siriusdi.di.ApplicationComponent
+import com.example.siriusdi.di.DaggerApplicationComponent
 
 /**
  * @author n.d.grebnev
  */
-class MyApplication: Application() {
+class MyApplication : Application() {
 
-    val dependencyContainer = DependencyContainer()
+    val appComponent: ApplicationComponent = DaggerApplicationComponent.create()
 }
