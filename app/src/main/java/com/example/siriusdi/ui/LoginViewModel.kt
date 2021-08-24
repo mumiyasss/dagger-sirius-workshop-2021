@@ -1,8 +1,8 @@
 package com.example.siriusdi.ui
 
 import com.example.siriusdi.data.LoginUserData
-import com.example.siriusdi.data.UserRepository
 import com.example.siriusdi.di.scopes.ActivityScope
+import com.example.siriusdi.domain.UserRepository
 import javax.inject.Inject
 
 /**
