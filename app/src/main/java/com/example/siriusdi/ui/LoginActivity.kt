@@ -1,34 +1,28 @@
 package com.example.siriusdi.ui
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.example.siriusdi.MyApplication
 import com.example.siriusdi.data.LoginUserData
-import com.example.siriusdi.di.DependencyContainer
-import com.example.siriusdi.di.LoginContainer
+import com.example.siriusdi.di.LoginComponent
+import javax.inject.Inject
 
 class LoginActivity : AppCompatActivity() {
 
-    private lateinit var dependencyContainer: DependencyContainer
-    private lateinit var userData: LoginUserData
-    private lateinit var loginViewModel: LoginViewModel
+    @Inject
+    lateinit var userData: LoginUserData
+
+    @Inject
+    lateinit var loginViewModel: LoginViewModel
+
+    private lateinit var loginComponent: LoginComponent
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        dependencyContainer = (application as MyApplication).dependencyContainer
+        loginComponent = (application as MyApplication).appComponent.loginComponent().create()
 
-        dependencyContainer.loginContainer = LoginContainer(dependencyContainer.userRepository)
-
-        dependencyContainer.loginContainer?.let {
-            loginViewModel = it.loginViewModelFactory.create()
-            userData = it.userData
-        }
+        loginComponent.inject(this)
 
         loginViewModel.loginUser("username", "password")
-    }
-
-    override fun onDestroy() {
-        dependencyContainer.loginContainer = null
-        super.onDestroy()
     }
 }

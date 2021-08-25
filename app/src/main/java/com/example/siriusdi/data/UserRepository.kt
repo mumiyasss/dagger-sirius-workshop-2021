@@ -1,9 +1,13 @@
 package com.example.siriusdi.data
 
+import javax.inject.Inject
+import javax.inject.Singleton
+
 /**
  * @author n.d.grebnev
  */
-class UserRepository(
+@Singleton
+class UserRepository @Inject constructor(
     private val userLocalDataSource: UserLocalDataSource,
     private val userRemoteDataSource: UserRemoteDataSource
 ) {
