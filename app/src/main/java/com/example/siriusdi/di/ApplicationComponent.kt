@@ -1,8 +1,9 @@
 package com.example.siriusdi.di
 
-import com.example.siriusdi.data.UserRepository
+import com.example.siriusdi.di.modules.BindsModule
 import com.example.siriusdi.di.modules.NetworkModule
 import com.example.siriusdi.di.modules.SubcomponentsModule
+import com.example.siriusdi.domain.UserRepository
 import dagger.Component
 import javax.inject.Singleton
 
@@ -11,6 +12,7 @@ import javax.inject.Singleton
  */
 @Component(
     modules = [
+        BindsModule::class,
         NetworkModule::class,
         SubcomponentsModule::class
     ]
